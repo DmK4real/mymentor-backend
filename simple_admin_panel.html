@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - User Registry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            color: #1e3a5f;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .section h2 {
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .user-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .user-table td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .user-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .btn-refresh {
+            background: #1e3a5f;
+            color: white;
+        }
+
+        .btn-refresh:hover {
+            background: #2c5282;
+        }
+
+        .btn-export {
+            background: #28a745;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-export:hover {
+            background: #218838;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .admin-login {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .admin-login h2 {
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1e3a5f;
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #1e3a5f;
+        }
+
+        @media (max-width: 768px) {
+            .user-table {
+                font-size: 12px;
+            }
+
+            .user-table th,
+            .user-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Login -->
+    <div id="adminLogin" class="admin-login">
+        <h2>🔐 Admin Access</h2>
+        <div class="error" id="loginError"></div>
+        <div class="form-group">
+            <label>Admin Password</label>
+            <input type="password" id="adminPassword" placeholder="Enter admin password">
+        </div>
+        <button class="btn-full" onclick="adminLogin()">Access Panel</button>
+        <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #999;">
+            Default password: <strong>admin123</strong>
+        </p>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="container hidden">
+        <div class="header">
+            <h1>🎓 Admin Panel - User Registry</h1>
+            <p>View all registered users and their activity</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <div class="number" id="totalUsers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Today's Registrations</h3>
+                <div class="number" id="todayRegistrations">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Used Invite Codes</h3>
+                <div class="number" id="usedCodes">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Last Activity</h3>
+                <div class="number" style="font-size: 18px;" id="lastActivity">--</div>
+            </div>
+        </div>
+
+        <!-- All Registered Users -->
+        <div class="section">
+            <h2>
+                <span>👥 All Registered Users</span>
+                <div>
+                    <button class="btn btn-refresh" onclick="loadUsers()">🔄 Refresh</button>
+                    <button class="btn btn-export" onclick="exportUsers()">📥 Export CSV</button>
+                </div>
+            </h2>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search by name, email, or invite code..." onkeyup="filterUsers()">
+            </div>
+
+            <div id="usersTable"></div>
+        </div>
+
+        <!-- Invite Codes Status -->
+        <div class="section">
+            <h2>🎫 Invitation Codes Status</h2>
+            <div id="inviteCodesTable"></div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = 'admin123'; // Change this to your secure password
+        let allUsers = [];
+
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('adminLogin').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                loadUsers();
+            } else {
+                errorDiv.textContent = 'Incorrect password';
+                errorDiv.style.display = 'block';
+                setTimeout(() => errorDiv.style.display = 'none', 3000);
+            }
+        }
+
+        function loadUsers() {
+            // Get all registered users from localStorage
+            const users = [];
+            
+            // Loop through all localStorage items to find user data
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('user_')) {
+                    try {
+                        const user = JSON.parse(localStorage.getItem(key));
+                        users.push(user);
+                    } catch (e) {
+                        console.error('Error parsing user:', e);
+                    }
+                }
+            }
+
+            allUsers = users;
+
+            // Update stats
+            updateStats(users);
+
+            // Display users table
+            displayUsers(users);
+
+            // Display invite codes
+            displayInviteCodes();
+        }
+
+        function updateStats(users) {
+            document.getElementById('totalUsers').textContent = users.length;
+
+            // Count today's registrations
+            const today = new Date().toDateString();
+            const todayCount = users.filter(u => {
+                const regDate = new Date(u.registeredAt).toDateString();
+                return regDate === today;
+            }).length;
+            document.getElementById('todayRegistrations').textContent = todayCount;
+
+            // Count used codes
+            const usedCodes = new Set(users.map(u => u.inviteCode));
+            document.getElementById('usedCodes').textContent = usedCodes.size;
+
+            // Last activity
+            if (users.length > 0) {
+                const lastUser = users.sort((a, b) => 
+                    new Date(b.registeredAt) - new Date(a.registeredAt)
+                )[0];
+                const lastDate = new Date(lastUser.registeredAt);
+                document.getElementById('lastActivity').textContent = 
+                    lastDate.toLocaleDateString() + ' ' + lastDate.toLocaleTimeString();
+            }
+        }
+
+        function displayUsers(users) {
+            const container = document.getElementById('usersTable');
+            
+            if (users.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">👥</div>
+                        <p>No registered users yet</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort by most recent first
+            users.sort((a, b) => new Date(b.registeredAt) - new Date(a.registeredAt));
+
+            let html = `
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Invite Code</th>
+                            <th>Registered</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            users.forEach(user => {
+                const date = new Date(user.registeredAt);
+                const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                html += `
+                    <tr>
+                        <td><strong>${user.name}</strong></td>
+                        <td>${user.email}</td>
+                        <td><span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; font-weight: 600;">${user.inviteCode}</span></td>
+                        <td>${formattedDate}</td>
+                        <td>
+                            <button class="btn btn-delete" onclick="deleteUser('${user.email}')">🗑️ Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function displayInviteCodes() {
+            const container = document.getElementById('inviteCodesTable');
+            const validCodes = ['WELCOME2024', 'STUDENT123', 'UNIV2024']; // These should match your index.html
+            
+            const users = allUsers;
+            const codeUsage = {};
+            
+            validCodes.forEach(code => {
+                codeUsage[code] = users.filter(u => u.inviteCode === code).length;
+            });
+
+            let html = `
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Invitation Code</th>
+                            <th>Times Used</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            for (const [code, count] of Object.entries(codeUsage)) {
+                html += `
+                    <tr>
+                        <td><strong>${code}</strong></td>
+                        <td>${count}</td>
+                        <td><span style="background: #d4edda; color: #155724; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Active</span></td>
+                    </tr>
+                `;
+            }
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function deleteUser(email) {
+            if (!confirm(`Are you sure you want to delete the user with email: ${email}?`)) {
+                return;
+            }
+
+            // Find and remove the user
+            const userKey = `user_${email}`;
+            localStorage.removeItem(userKey);
+
+            // Also remove from currentUser if it's them
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (currentUser && currentUser.email === email) {
+                localStorage.removeItem('currentUser');
+            }
+
+            alert('User deleted successfully');
+            loadUsers();
+        }
+
+        function filterUsers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredUsers = allUsers.filter(user => 
+                user.name.toLowerCase().includes(searchTerm) ||
+                user.email.toLowerCase().includes(searchTerm) ||
+                user.inviteCode.toLowerCase().includes(searchTerm)
+            );
+            displayUsers(filteredUsers);
+        }
+
+        function exportUsers() {
+            if (allUsers.length === 0) {
+                alert('No users to export');
+                return;
+            }
+
+            // Create CSV content
+            let csv = 'Name,Email,Invite Code,Registered Date\n';
+            allUsers.forEach(user => {
+                const date = new Date(user.registeredAt).toLocaleString();
+                csv += `"${user.name}","${user.email}","${user.inviteCode}","${date}"\n`;
+            });
+
+            // Download CSV
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `users_export_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Check for Enter key on password field
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('adminPassword')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    adminLogin();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
