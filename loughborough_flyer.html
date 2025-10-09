@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loughborough University Profile</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh;}
+        .flyer {background: white; max-width: 900px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden;}
+        .header {background: linear-gradient(135deg, #522D80 0%, #6B3AA0 100%); color: white; padding: 40px; position: relative;}
+        .header::after {content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #522D80, #6B3AA0, #522D80);}
+        .logo-section {display: flex; align-items: center; gap: 25px; margin-bottom: 20px;}
+        .logo {width: 120px; height: 120px; flex-shrink: 0;}
+        .logo svg {width: 100%; height: 100%; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));}
+        .uni-name {flex: 1;}
+        .uni-name h1 {font-size: 28px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);}
+        .tagline {background: rgba(255,255,255,0.15); padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; backdrop-filter: blur(10px); margin-top: 15px;}
+        .content {padding: 40px;}
+        .quick-stats {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;}
+        .stat-box {background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 20px; border-radius: 10px; text-align: center; border-left: 4px solid #522D80; transition: transform 0.3s ease;}
+        .stat-box:hover {transform: translateY(-5px);}
+        .stat-number {font-size: 28px; font-weight: 700; color: #522D80; margin-bottom: 5px;}
+        .stat-label {font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;}
+        .section {margin-bottom: 30px;}
+        .section-title {font-size: 20px; font-weight: 700; color: #522D80; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #522D80; display: flex; align-items: center; gap: 10px;}
+        .section-title::before {content: ''; width: 8px; height: 8px; background: #522D80; border-radius: 50%;}
+        .section-content {color: #333; line-height: 1.8; font-size: 14px;}
+        .programmes-list {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px;}
+        .programme-item {background: #f8f9fa; padding: 12px 15px; border-radius: 6px; font-size: 13px; border-left: 3px solid #522D80;}
+        .info-grid {display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 15px;}
+        .info-item {display: flex; flex-direction: column; gap: 5px;}
+        .info-label {font-weight: 600; color: #522D80; font-size: 13px;}
+        .info-value {color: #555; font-size: 13px;}
+        .pros-cons {display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 15px;}
+        .pros, .cons {background: #f8f9fa; padding: 20px; border-radius: 8px;}
+        .pros {border-top: 4px solid #28a745;}
+        .cons {border-top: 4px solid #ff8c00;}
+        .pros h4, .cons h4 {margin-bottom: 10px; font-size: 16px;}
+        .pros h4 {color: #28a745;}
+        .cons h4 {color: #ff8c00;}
+        .pros ul, .cons ul {list-style: none; padding-left: 0;}
+        .pros li, .cons li {padding: 8px 0; padding-left: 25px; position: relative; font-size: 13px; line-height: 1.6;}
+        .pros li::before {content: '✓'; position: absolute; left: 0; color: #28a745; font-weight: bold;}
+        .cons li::before {content: '!'; position: absolute; left: 0; font-weight: bold; width: 18px; height: 18px; background: #ff8c00; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px;}
+        .companies {display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;}
+        .company-tag {background: linear-gradient(135deg, #522D80 0%, #6B3AA0 100%); color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: 500;}
+        .footer {background: #f8f9fa; padding: 20px 40px; text-align: center; color: #666; font-size: 12px; border-top: 3px solid #522D80;}
+        @media print {body {padding: 0; background: white;} .flyer {box-shadow: none;}}
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="120" height="120" fill="#522D80" rx="0"/>
+                        <text x="60" y="80" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">LU</text>
+                    </svg>
+                </div>
+                <div class="uni-name">
+                    <h1>Loughborough University</h1>
+                </div>
+            </div>
+            <div class="tagline">
+                🏆 Top 10 Student Experience | Outstanding Campus Facilities | Excellent Management & Marketing
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="quick-stats">
+                <div class="stat-box">
+                    <div class="stat-number">Top 5</div>
+                    <div class="stat-label">Sports-Related Subjects</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">~20-25%</div>
+                    <div class="stat-label">Acceptance Rate</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">88-90%</div>
+                    <div class="stat-label">Employment Rate</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">About Loughborough</div>
+                <div class="section-content">
+                    Loughborough University consistently achieves top rankings for student experience while offering excellent management, marketing, and business programmes. Known for its strong sports culture and outstanding campus facilities, Loughborough provides a well-rounded university experience with solid employability.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Business Programmes Offered</div>
+                <div class="programmes-list">
+                    <div class="programme-item">BSc Business Management</div>
+                    <div class="programme-item">BSc Accounting and Financial Management</div>
+                    <div class="programme-item">BSc International Business</div>
+                    <div class="programme-item">BSc Management Sciences</div>
+                    <div class="programme-item">BSc Business Economics and Finance</div>
+                    <div class="programme-item">BSc Marketing</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Key Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">📍 Location</div>
+                        <div class="info-value">Loughborough, Leicestershire, UK</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">⏱️ Duration</div>
+                        <div class="info-value">3 years (4 with placement recommended)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">💰 Tuition Fees</div>
+                        <div class="info-value">£24,000-£26,000/year</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">📅 UCAS Deadline</div>
+                        <div class="info-value">January 31st</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">🎓 Entry Requirements</div>
+                        <div class="info-value">Bac: 14-15/20 | AAB-ABB | IB: 34-36</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">🏆 Ranking</div>
+                        <div class="info-value">Top 10 Student Experience</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Top Hiring Companies</div>
+                <div class="companies">
+                    <div class="company-tag">P&G</div>
+                    <div class="company-tag">Unilever</div>
+                    <div class="company-tag">Mars</div>
+                    <div class="company-tag">Big 4</div>
+                    <div class="company-tag">Major Retailers</div>
+                    <div class="company-tag">Sports Industry</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Student Life</div>
+                <div class="section-content">
+                    <strong>Campus Facilities:</strong> Single-site campus with outstanding facilities • World-class sports facilities • Excellent student accommodation • Modern business school • Strong student community • Award-winning Students' Union
+                    <br><br>
+                    <strong>Key Societies:</strong> Business Society • Finance Society • Marketing Society • Entrepreneurship Society • Extensive sports clubs (70+)
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Strengths & Considerations</div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✓ Strengths</h4>
+                        <ul>
+                            <li>Outstanding student experience consistently</li>
+                            <li>Excellent campus facilities (best in UK)</li>
+                            <li>Strong placement culture</li>
+                            <li>Good balance of academics and extracurriculars</li>
+                            <li>Supportive community atmosphere</li>
+                            <li>Strong in marketing and management</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠ Considerations</h4>
+                        <ul>
+                            <li>Less business-focused than specialist business schools</li>
+                            <li>Less corporate networking than London</li>
+                            <li>Competitive sport-heavy focus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Career Outcomes</div>
+                <div class="section-content">
+                    <strong>Employment Rate:</strong> 88-90% within 6 months
+                    <br><br>
+                    <strong>Career Services:</strong> Strong Careers Network • Excellent placement year support (high participation) • Good employer partnerships • Active alumni network • Strong reputation among graduate recruiters
+                    <br><br>
+                    <strong>Scholarships:</strong> Sports Scholarships • Excellence Scholarships • Means-tested bursaries
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Loughborough University Profile | For undergraduate business programmes 2025-2026
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .back-btn, .logout-btn {
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover, .logout-btn:hover {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 42px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 3px solid transparent;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,188,212,0.3);
+            border-color: #1e3a5f;
+        }
+
+        .service-icon {
+            font-size: 72px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .service-card h2 {
+            color: #1e3a5f;
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .service-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 14px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .cta-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0097a7 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎓 University Admission Services</h1>
+        <div class="header-right">
+            <a href="landing.html" class="back-btn">← Back to Home</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Choose Your Service</h1>
+        <p class="page-subtitle">
+            Select the service you need to get started on your journey to UK universities. 
+            Our expert team is here to guide you every step of the way.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card" onclick="window.location.href='universities.html'">
+                <span class="service-icon">🎯</span>
+                <h2>Choose Your Uni</h2>
+                <p>
+                    Explore our curated list of 26 top UK universities ranked by tier.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li>26 Universities</li>
+                        <li>Tier-based Rankings</li>
+                        <li>Detailed University Profiles</li>
+                        <li>Acceptance Rate Information</li>
+                        <li>Career Outcome Statistics</li>
+                    </ul>
+                </div>
+                <span class="cta-badge">Explore Universities →</span>
+            </div>
+
+            <div class="service-card" onclick="alert('Personal Statement Redaction service - Coming soon! Contact us via WhatsApp: +447946869841')">
+                <span class="service-icon">✍️</span>
+                <h2>Personal Statement Redaction</h2>
+                <p>
+                    Get expert help crafting a compelling personal statement that stands out. 
+                    We will guide you through every draft.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li>One-on-one consultation</li>
+                        <li>Multiple draft reviews</li>
+                        <li>UCAS guidelines compliance</li>
+                        <li>Tailored to your target universities</li>
+                        <li>Professional proofreading</li>
+                    </ul>
+                </div>
+                <span class="cta-badge">Get Started →</span>
+            </div>
+
+            <div class="service-card" onclick="alert('Scholarship Application service - Coming soon! Contact us via WhatsApp: +447946869841')">
+                <span class="service-icon">💰</span>
+                <h2>Scholarship Application</h2>
+                <p>
+                    Maximize your chances of securing financial aid. We'll help you find and apply 
+                    to scholarships.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li>Scholarship search & matching</li>
+                        <li>Application strategy</li>
+                        <li>Essay and document preparation</li>
+                        <li>Interview preparation</li>
+                        <li>Deadline management</li>
+                    </ul>
+                </div>
+                <span class="cta-badge">Find Scholarships →</span>
+            </div>
+
+            <div class="service-card" onclick="alert('English Certifications service - Coming soon! Contact us via WhatsApp: +447946869841')">
+                <span class="service-icon">📚</span>
+                <h2>English Certifications</h2>
+                <p>
+                    Prepare for IELTS, TOEFL, Cambridge or other English proficiency tests required for UK university admission. 
+                    Achieve the scores you need.
+                </p>
+                <div class="service-features">
+                    <ul>
+                        <li>IELTS, Cambridge, and TOEFL preparation</li>
+                        <li>Practice tests & materials</li>
+                        <li>Speaking practice sessions</li>
+                        <li>Writing feedback</li>
+                        <li>Test booking assistance</li>
+                    </ul>
+                </div>
+                <span class="cta-badge">Start Preparation →</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const user = JSON.parse(window.localStorage.getItem('currentUser') || 'null');
+            if (!user) {
+                window.location.href = 'index.html';
+            }
+        };
+
+        function logout() {
+            window.localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

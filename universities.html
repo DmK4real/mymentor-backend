@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .back-btn, .logout-btn {
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover, .logout-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .stats-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .tier-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tier-badge {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tier-1 .tier-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .tier-2 .tier-badge {
+            background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(192, 192, 192, 0.4);
+        }
+
+        .tier-3 .tier-badge {
+            background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(205, 127, 50, 0.4);
+        }
+
+        .tier-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .flyer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .flyer-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .flyer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .flyer-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .flyer-card p {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .flyer-card .view-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .no-results {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: #666;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .stats-summary {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Choose Your University</h1>
+        <div class="header-right">
+            <a href="services.html" class="back-btn">← Back to Services</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="stats-summary">
+        <div class="stat-item">
+            <div class="stat-number">26</div>
+            <div class="stat-label">Universities</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Tiers</div>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Search universities..." oninput="filterUniversities()">
+    </div>
+
+    <div id="universitiesContainer"></div>
+    <div class="no-results" id="noResults">No universities found matching your search.</div>
+
+    <script>
+        const universitiesByTier = {
+            tier1: [
+                { id: 'lse', name: 'London School of Economics', description: '#1 UK for Accounting & Finance | Elite Global Target | Unrivalled IB & Consulting Recruitment', hasFlyer: true, flyerFile: 'lse_flyer.html' },
+                { id: 'imperial', name: 'Imperial College London', description: 'Top 5 UK | STEM Excellence | Analytics, Finance & Fintech', hasFlyer: true, flyerFile: 'imperial_flyer.html' },
+                { id: 'ucl', name: 'University College London', description: 'Top 10 UK University | Rapidly Rising in Management | Innovation & Quantitative Analysis Focus', hasFlyer: true, flyerFile: 'ucl_flyer.html' },
+                { id: 'warwick', name: 'University of Warwick', description: '#1 for Graduate Employer Reputation | Outstanding Placements | Top Recruiter Target', hasFlyer: true, flyerFile: 'warwick_flyer.html' },
+                { id: 'bath', name: 'University of Bath', description: '#1 UK Placement Record | 67% Placement Participation | Exceptional Employability', hasFlyer: true, flyerFile: 'bath_flyer.html' },
+                { id: 'durham', name: 'Durham University', description: 'Top 10 UK | Oxbridge-Style Collegiate | Strong Accounting & Finance', hasFlyer: true, flyerFile: 'durham_flyer.html' },
+                { id: 'edinburgh', name: 'University of Edinburgh', description: 'Top 15 UK | Internationally Respected | Triple Crown Accredited | Scotland\'s Premier Business School', hasFlyer: true, flyerFile: 'edinburgh_flyer.html' },
+                { id: 'standrews', name: 'University of St Andrews', description: 'Top 5 UK | Scotland\'s #1 University | Highest Student Satisfaction | Academic Excellence & Flexibility', hasFlyer: true, flyerFile: 'standrews_flyer.html' }
+            ],
+            tier2: [
+                { id: 'manchester', name: 'University of Manchester', description: 'Top 30 UK | One of UK\'s Largest Business Schools | Triple Crown Accredited | Strong Corporate Partnerships', hasFlyer: true, flyerFile: 'manchester_flyer.html' },
+                { id: 'bristol', name: 'University of Bristol', description: 'Top 15 UK | Russell Group | Rigorous Economics-Based Programmes | Strong Academic Reputation', hasFlyer: true, flyerFile: 'bristol_flyer.html' },
+                { id: 'glasgow', name: 'University of Glasgow', description: 'Top 20 UK | Quantitative, Research-Led | Globally Recognized in Economics & Finance', hasFlyer: true, flyerFile: 'glasgow_flyer.html' },
+                { id: 'leeds', name: 'University of Leeds', description: 'Top 25 UK | Triple Crown Accredited | Strong Corporate Engagement | Excellent Value', hasFlyer: true, flyerFile: 'leeds_flyer.html' },
+                { id: 'loughborough', name: 'Loughborough University', description: 'Top 10 Student Experience | Outstanding Campus Facilities | Excellent Management & Marketing', hasFlyer: true, flyerFile: 'loughborough_flyer.html' },
+                { id: 'nottingham', name: 'University of Nottingham', description: 'Top 25 UK | Triple Crown Accredited | Global Focus | Strong in International Business & Sustainability', hasFlyer: true, flyerFile: 'nottingham_flyer.html' },
+                { id: 'birmingham', name: 'University of Birmingham', description: 'Top 20 UK | Russell Group | Triple Crown | Broad Business Offering', hasFlyer: true, flyerFile: 'birmingham_flyer.html' }
+            ],
+            tier3: [
+                { id: 'lancaster', name: 'Lancaster University', description: 'Top 10 Management & Accounting | Triple Crown Accredited | Strong Placement Culture | Collegiate System', hasFlyer: true, flyerFile: 'lancaster_flyer.html' },
+                { id: 'aston', name: 'Aston University', description: '#1 Graduate Prospects | Industry-Integrated | Exceptional Placement Programme', hasFlyer: true, flyerFile: 'aston_flyer.html' },
+                { id: 'southampton', name: 'University of Southampton', description: 'Top 20 UK Russell Group | Analytics-Oriented Management | Strong in Data-Driven Business Fields', hasFlyer: true, flyerFile: 'southampton_flyer.html' },
+                { id: 'sheffield', name: 'University of Sheffield', description: 'Top 25 UK Russell Group | Strong Student Community | Excellent Student Experience | Affordable Northern City', hasFlyer: true, flyerFile: 'sheffield_flyer.html' },
+                { id: 'queen-mary', name: 'Queen Mary University of London', description: 'Top 35 UK Russell Group | London Location | Diverse Student Body | Good Value London Option', hasFlyer: true, flyerFile: 'queen_mary_flyer.html' },
+                { id: 'bayes', name: 'Bayes Business School', description: 'City of London | Finance Excellence | Triple Crown Accredited', hasFlyer: true, flyerFile: 'bayes_flyer.html' },
+                { id: 'strathclyde', name: 'Strathclyde Business School', description: "Scotland's Oldest | Top 10 Accounting & Finance | Glasgow", hasFlyer: true, flyerFile: 'strathclyde_flyer.html' }
+            ]
+        };
+
+        window.onload = function() {
+            const user = JSON.parse(window.localStorage.getItem('currentUser') || 'null');
+            if (!user) {
+                window.location.href = 'index.html';
+                return;
+            }
+            displayUniversities();
+        };
+
+        function displayUniversities() {
+            const container = document.getElementById('universitiesContainer');
+            
+            let html = '';
+            
+            // Tier 1
+            html += `
+                <div class="tier-section tier-1">
+                    <div class="tier-header">
+                        <span class="tier-badge">🥇 Tier 1</span>
+                        <span class="tier-title">Elite Universities</span>
+                    </div>
+                    <div class="flyer-grid">
+                        ${universitiesByTier.tier1.map(uni => `
+                            <div class="flyer-card" data-name="${uni.name.toLowerCase()}" onclick="viewFlyer('${uni.flyerFile}')">
+                                <h3>${uni.name}</h3>
+                                <p>${uni.description}</p>
+                                <span class="view-btn">View Profile →</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Tier 2
+            html += `
+                <div class="tier-section tier-2">
+                    <div class="tier-header">
+                        <span class="tier-badge">🥈 Tier 2</span>
+                        <span class="tier-title">Strong Universities</span>
+                    </div>
+                    <div class="flyer-grid">
+                        ${universitiesByTier.tier2.map(uni => `
+                            <div class="flyer-card" data-name="${uni.name.toLowerCase()}" onclick="viewFlyer('${uni.flyerFile}')">
+                                <h3>${uni.name}</h3>
+                                <p>${uni.description}</p>
+                                <span class="view-btn">View Profile →</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Tier 3
+            html += `
+                <div class="tier-section tier-3">
+                    <div class="tier-header">
+                        <span class="tier-badge">🥉 Tier 3</span>
+                        <span class="tier-title">Excellent Value Universities</span>
+                    </div>
+                    <div class="flyer-grid">
+                        ${universitiesByTier.tier3.map(uni => `
+                            <div class="flyer-card" data-name="${uni.name.toLowerCase()}" onclick="viewFlyer('${uni.flyerFile}')">
+                                <h3>${uni.name}</h3>
+                                <p>${uni.description}</p>
+                                <span class="view-btn">View Profile →</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        function filterUniversities() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.flyer-card');
+            const tierSections = document.querySelectorAll('.tier-section');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            tierSections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.flyer-card[style="display: block;"], .flyer-card:not([style*="display: none"])');
+                if (searchTerm === '' || visibleCards.length > 0) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        function viewFlyer(flyerFile) {
+            window.open(flyerFile, '_blank');
+        }
+
+        function logout() {
+            window.localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

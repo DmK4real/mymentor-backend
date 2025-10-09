@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durham University Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .flyer {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4B0082 0%, #6A0DAD 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4B0082, #6A0DAD, #4B0082);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+        }
+        
+        .logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+        }
+        
+        .uni-name {
+            flex: 1;
+        }
+        
+        .uni-name h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .uni-name p {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #4B0082;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4B0082;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4B0082;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4B0082;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #4B0082;
+            border-radius: 50%;
+        }
+        
+        .section-content {
+            color: #333;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        
+        .programmes-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .programme-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            border-left: 3px solid #4B0082;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #4B0082;
+            font-size: 13px;
+        }
+        
+        .info-value {
+            color: #555;
+            font-size: 13px;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .pros, .cons {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            border-top: 4px solid #28a745;
+        }
+        
+        .cons {
+            border-top: 4px solid #ff8c00;
+        }
+        
+        .pros h4, .cons h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .pros h4 {
+            color: #28a745;
+        }
+        
+        .cons h4 {
+            color: #ff8c00;
+        }
+        
+        .pros ul, .cons ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .pros li, .cons li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .cons li::before {
+            content: '!';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            background: #ff8c00;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .companies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .company-tag {
+            background: linear-gradient(135deg, #4B0082 0%, #6A0DAD 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 3px solid #4B0082;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            .flyer {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Durham purple background -->
+                        <rect width="120" height="120" fill="#4B0082" rx="0"/>
+                        
+                        <!-- Durham "D" -->
+                        <text x="60" y="80" font-family="Georgia, serif" font-size="56" font-weight="bold" fill="white" text-anchor="middle">D</text>
+                    </svg>
+                </div>
+                <div class="uni-name">
+                    <h1>Durham University</h1>
+                    <p>Business School</p>
+                </div>
+            </div>
+            <div class="tagline">
+                🏆 Top 10 UK | Oxbridge-Style Collegiate Experience | Strong in Accounting & Finance
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="quick-stats">
+                <div class="stat-box">
+                    <div class="stat-number">Top 5</div>
+                    <div class="stat-label">Accounting & Finance</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">~12-14%</div>
+                    <div class="stat-label">Acceptance Rate</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">93%+</div>
+                    <div class="stat-label">Employment Rate</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">About Durham Business School</div>
+                <div class="section-content">
+                    Durham University Business School combines a collegiate Oxford-Cambridge style experience with rigorous business education. As part of one of England's oldest universities, Durham offers a traditional, prestigious education with particularly strong accounting and finance programmes. Triple Crown accredited (AACSB, AMBA, EQUIS), located in a UNESCO World Heritage city with beautiful historic surroundings.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Business Programmes Offered</div>
+                <div class="programmes-list">
+                    <div class="programme-item">BA Accounting and Finance</div>
+                    <div class="programme-item">BA Business and Management</div>
+                    <div class="programme-item">BA Economics and Management</div>
+                    <div class="programme-item">BA Finance</div>
+                    <div class="programme-item">BA Marketing and Management</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Key Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">📍 Location</div>
+                        <div class="info-value">Durham, England, UK</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">⏱️ Duration</div>
+                        <div class="info-value">3 years (4 with placement)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">💰 Tuition Fees</div>
+                        <div class="info-value">£28,000-£30,000/year</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">📅 UCAS Deadline</div>
+                        <div class="info-value">January 31st (Oct 15th recommended)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">🎓 Entry Requirements</div>
+                        <div class="info-value">Bac: 16-17/20 | A*AA-AAA | IB: 38-40</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">🏆 Ranking</div>
+                        <div class="info-value">Top 10 UK | Top 5 Accounting & Finance</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Top Hiring Companies</div>
+                <div class="companies">
+                    <div class="company-tag">Big 4 Accounting</div>
+                    <div class="company-tag">Major Banks</div>
+                    <div class="company-tag">Strategy Consultancies</div>
+                    <div class="company-tag">Asset Management</div>
+                    <div class="company-tag">Corporate Finance</div>
+                    <div class="company-tag">Civil Service</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Student Life</div>
+                <div class="section-content">
+                    <strong>Campus Facilities:</strong> 17 colleges providing accommodation and social structure • Historic Durham Cathedral and Castle (UNESCO site) • Modern business school facilities • Excellent sports facilities (strong college sports culture) • Beautiful riverside location
+                    <br><br>
+                    <strong>Key Societies:</strong> Durham Finance Society • Investment Banking Society • Consulting Society • Durham Union Society (debating) • Extensive college-based activities
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Strengths & Considerations</div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✓ Strengths</h4>
+                        <ul>
+                            <li>Oxbridge-style collegiate experience</li>
+                            <li>Prestigious, traditional university environment</li>
+                            <li>Strong academic reputation in Accounting & Finance</li>
+                            <li>Beautiful historic location</li>
+                            <li>Excellent student experience and community</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>⚠ Considerations</h4>
+                        <ul>
+                            <li>Remote location far from major business centres</li>
+                            <li>Fewer networking opportunities than London</li>
+                            <li>Traditional culture may not suit everyone</li>
+                            <li>Limited diversity in teaching approach</li>
+                            <li>Northern England weather can be challenging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Career Outcomes</div>
+                <div class="section-content">
+                    <strong>Employment Rate:</strong> 93%+ within 6 months
+                    <br><br>
+                    <strong>Career Services:</strong> Durham Careers Service with strong employer links • Prestigious alumni network (similar to Oxbridge) • Good on-campus recruitment • Strong accounting firm relationships • Active alumni mentoring programme
+                    <br><br>
+                    <strong>Scholarships:</strong> Durham Grant • Vice-Chancellor's Scholarship • College-specific awards • Sports scholarships
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Durham University Profile | For undergraduate business programmes 2025-2026
+        </div>
+    </div>
+</body>
+</html>

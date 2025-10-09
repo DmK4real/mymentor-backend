@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMentor - Study in England</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .user-name {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .logout-btn {
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(30,58,95,0.95) 0%, rgba(44,82,130,0.95) 100%), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #87CEEB;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: white;
+            color: #1e3a5f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .benefits-section {
+            background: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .benefit-card h3 {
+            color: #1e3a5f;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-card li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 14px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .benefit-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .services-preview {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: #1e3a5f;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(30,58,95,0.3);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .service-card li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 14px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1e3a5f;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 60px 40px;
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .contact-item strong {
+            color: #1e3a5f;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero .subtitle {
+                font-size: 28px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>mymentor</h1>
+        <div class="header-right">
+            <span class="user-name">Welcome, <strong id="userName"></strong></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h2>Étudier</h2>
+        <div class="subtitle">en Angleterre</div>
+        <p class="hero-tagline">
+            <strong>Sécuriser son avenir dès la 1ère année</strong><br>
+            L'Angleterre est le pays idéal pour bâtir une carrière en business, finance ou conseil
+        </p>
+        <a href="services.html" class="cta-button">University Admission →</a>
+    </div>
+
+    <div class="benefits-section">
+        <div class="section-title">Pourquoi l'Angleterre?</div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>🎓 Le Système Unique de Stages</h3>
+                <p>Au-delà du choix de l'université, c'est surtout la maîtrise du processus unique de stages qui fait toute la différence.</p>
+                <ul>
+                    <li>Dès la 1ère année: accès aux <strong>summer internships</strong></li>
+                    <li>En 2ème année qui se convertissent en <strong>graduate jobs</strong></li>
+                    <li>Garantissant un emploi dès la fin du bachelor</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h3>💼 Opportunités de Carrière</h3>
+                <p>Les meilleures entreprises recrutent directement sur les campus britanniques:</p>
+                <ul>
+                    <li><strong>J.P. Morgan</strong></li>
+                    <li><strong>Goldman Sachs</strong></li>
+                    <li><strong>Morgan Stanley</strong></li>
+                    <li>Salaires d'entrée: <strong>£65,000/£70,000 par an</strong></li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h3>🎯 Suivi et Résultats</h3>
+                <p><strong>Garantie d'au moins une offre de spring week</strong></p>
+                <p>Optionnel:</p>
+                <ul>
+                    <li>Accompagnement jusqu'à l'obtention d'un summer internship</li>
+                    <li>Puis d'un graduate job</li>
+                    <li>Candidatures dès l'ouverture des spring weeks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Nos Services</div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Orientation & Admissions</h3>
+                <ul>
+                    <li>Sélection des universités</li>
+                    <li>Rédaction du personal statement</li>
+                    <li>Constitution du dossier UCAS</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Préparation Intensive</h3>
+                <ul>
+                    <li>Entraînement aux tests psychométriques</li>
+                    <li>Entretiens vidéo</li>
+                    <li>Coaching en networking et simulation d'entretiens</li>
+                    <li>Candidatures dès l'ouverture des spring weeks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h2 style="color: #1e3a5f; margin-bottom: 30px;">Prêt à commencer?</h2>
+        <a href="services.html" class="cta-button">University Admission →</a>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>📱 WhatsApp</strong>
+                +447946869841<br>
+                +225074750796
+            </div>
+            <div class="contact-item">
+                <strong>✉️ Email</strong>
+                mymentor.angleterre@gmail.com
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const user = JSON.parse(window.localStorage.getItem('currentUser') || 'null');
+            if (!user) {
+                window.location.href = 'index.html';
+                return;
+            }
+            document.getElementById('userName').textContent = user.name;
+        };
+
+        function logout() {
+            window.localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
