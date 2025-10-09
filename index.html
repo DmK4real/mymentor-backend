@@ -147,6 +147,10 @@
                 <input type="text" id="inviteCode" placeholder="Enter your invitation code">
             </div>
             <button class="btn" onclick="validateInvite()">Continue</button>
+            <div class="link-text">
+                <span>Already have an account? </span>
+                <a href="#" onclick="showLoginStep()">Login here</a>
+            </div>
         </div>
 
         <div id="registerStep" class="hidden">
@@ -184,14 +188,10 @@
 
     <script>
         let inviteCodes = ['WELCOME2024', 'STUDENT123', 'UNIV2024'];
-        let usedCodes = [];
-        let users = [];
-        let currentUser = null;
 
         window.onload = function() {
-            const savedUser = JSON.parse(window.localStorage.getItem('currentUser') || 'null');
+            const savedUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
             if (savedUser) {
-                currentUser = savedUser;
                 window.location.href = 'landing.html';
             }
         };
@@ -218,13 +218,8 @@
                 return;
             }
 
-            if (usedCodes.includes(code)) {
-                showError('This invitation code has already been used');
-                return;
-            }
-
             if (inviteCodes.includes(code)) {
-                window.localStorage.setItem('validInviteCode', code);
+                localStorage.setItem('validInviteCode', code);
                 document.getElementById('inviteStep').classList.add('hidden');
                 document.getElementById('registerStep').classList.remove('hidden');
                 showSuccess('Valid code! Please create your account.');
@@ -237,7 +232,7 @@
             const name = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
-            const inviteCode = window.localStorage.getItem('validInviteCode');
+            const inviteCode = localStorage.getItem('validInviteCode');
 
             if (!name || !email || !password) {
                 showError('Please fill in all fields');
@@ -249,11 +244,27 @@
                 return;
             }
 
-            const user = { name, email, password, inviteCode };
-            window.localStorage.removeItem('validInviteCode');
+            // Check if user already exists
+            const existingUser = localStorage.getItem(`user_${email}`);
+            if (existingUser) {
+                showError('An account with this email already exists');
+                return;
+            }
+
+            const user = { 
+                name, 
+                email, 
+                password, 
+                inviteCode,
+                registeredAt: new Date().toISOString()
+            };
             
-            currentUser = user;
-            window.localStorage.setItem('currentUser', JSON.stringify(user));
+            // Save user data with unique key for admin panel
+            localStorage.setItem(`user_${email}`, JSON.stringify(user));
+            
+            // Set as current user
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.removeItem('validInviteCode');
             
             showSuccess('Account created successfully!');
             setTimeout(() => window.location.href = 'landing.html', 1000);
@@ -265,19 +276,41 @@
             document.getElementById('inviteStep').classList.remove('hidden');
         }
 
+        function showLoginStep() {
+            document.getElementById('inviteStep').classList.add('hidden');
+            document.getElementById('registerStep').classList.add('hidden');
+            document.getElementById('loginStep').classList.remove('hidden');
+        }
+
         function login() {
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
 
-            // For demo purposes, accept any email/password
-            if (email && password) {
-                currentUser = { name: email.split('@')[0], email, password };
-                window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                showSuccess('Login successful!');
-                setTimeout(() => window.location.href = 'landing.html', 1000);
-            } else {
+            if (!email || !password) {
                 showError('Please enter email and password');
+                return;
             }
+
+            // Check if user exists
+            const userKey = `user_${email}`;
+            const savedUser = localStorage.getItem(userKey);
+
+            if (!savedUser) {
+                showError('No account found with this email');
+                return;
+            }
+
+            const user = JSON.parse(savedUser);
+
+            if (user.password !== password) {
+                showError('Incorrect password');
+                return;
+            }
+
+            // Login successful
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            showSuccess('Login successful!');
+            setTimeout(() => window.location.href = 'landing.html', 1000);
         }
     </script>
 </body>
