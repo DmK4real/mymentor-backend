@@ -179,6 +179,20 @@
             border-color: #667eea;
         }
 
+        .flyer-card.oxbridge {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe9b3 100%);
+            border: 2px solid #FFD700;
+            position: relative;
+        }
+
+        .flyer-card.oxbridge::before {
+            content: '⭐';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+
         .flyer-card h3 {
             color: #333;
             margin-bottom: 10px;
@@ -237,7 +251,7 @@
 
     <div class="stats-summary">
         <div class="stat-item">
-            <div class="stat-number">26</div>
+            <div class="stat-number">28</div>
             <div class="stat-label">Universities</div>
         </div>
         <div class="stat-item">
@@ -256,6 +270,8 @@
     <script>
         const universitiesByTier = {
             tier1: [
+                { id: 'oxford', name: 'University of Oxford', description: '#1 World University | 800+ Years of Excellence | Tutorial System | Ultimate Prestige', hasFlyer: true, flyerFile: 'oxford_flyer.html', isOxbridge: true },
+                { id: 'cambridge', name: 'University of Cambridge', description: '#2 World University | 800+ Years of Excellence | Supervision System | Global Recognition', hasFlyer: true, flyerFile: 'cambridge_flyer.html', isOxbridge: true },
                 { id: 'lse', name: 'London School of Economics', description: '#1 UK for Accounting & Finance | Elite Global Target | Unrivalled IB & Consulting Recruitment', hasFlyer: true, flyerFile: 'lse_flyer.html' },
                 { id: 'imperial', name: 'Imperial College London', description: 'Top 5 UK | STEM Excellence | Analytics, Finance & Fintech', hasFlyer: true, flyerFile: 'imperial_flyer.html' },
                 { id: 'ucl', name: 'University College London', description: 'Top 10 UK University | Rapidly Rising in Management | Innovation & Quantitative Analysis Focus', hasFlyer: true, flyerFile: 'ucl_flyer.html' },
@@ -308,7 +324,7 @@
                     </div>
                     <div class="flyer-grid">
                         ${universitiesByTier.tier1.map(uni => `
-                            <div class="flyer-card" data-name="${uni.name.toLowerCase()}" onclick="viewFlyer('${uni.flyerFile}')">
+                            <div class="flyer-card ${uni.isOxbridge ? 'oxbridge' : ''}" data-name="${uni.name.toLowerCase()}" onclick="viewFlyer('${uni.flyerFile}')">
                                 <h3>${uni.name}</h3>
                                 <p>${uni.description}</p>
                                 <span class="view-btn">View Profile →</span>
@@ -342,7 +358,7 @@
                 <div class="tier-section tier-3">
                     <div class="tier-header">
                         <span class="tier-badge">🥉 Tier 3</span>
-                        <span class="tier-title">Value Universities</span>
+                        <span class="tier-title">Excellent Value Universities</span>
                     </div>
                     <div class="flyer-grid">
                         ${universitiesByTier.tier3.map(uni => `
@@ -402,5 +418,4 @@
         }
     </script>
 </body>
-
 </html>
