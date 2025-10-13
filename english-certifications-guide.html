@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide des Tests d'Anglais - University Admission Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .title-section {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-size: 38px;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .title-section p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            color: #1e3a5f;
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1e3a5f;
+        }
+
+        .content-section h3 {
+            color: #2c5282;
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section h4 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .content-section p {
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .content-section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #1e3a5f;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: #e7f3ff;
+            border: 2px solid #2c5282;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .center-image {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        strong {
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .title-section h1 {
+                font-size: 28px;
+            }
+
+            .content-section {
+                padding: 25px;
+            }
+
+            .content-section h2 {
+                font-size: 24px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Guide des Tests d'Anglais</h1>
+        <a href="services.html" class="back-btn">← Retour aux Services</a>
+    </div>
+
+    <div class="container">
+        <div class="title-section">
+            <h1>Guide Complet des Tests d'Anglais</h1>
+            <p>
+                Ce guide a été conçu pour les étudiants ivoiriens ayant effectué leur scolarité en Côte d'Ivoire et 
+                souhaitant poursuivre leurs études au Royaume-Uni. Il présente tous les tests d'anglais requis pour 
+                l'admission universitaire ainsi que l'immigration (visa étudiant). L'objectif est simple : éliminer les 
+                barrières linguistiques et vous permettre d'accéder aux meilleures universités et opportunités à 
+                Londres, Manchester, Oxford ou Cambridge.
+            </p>
+        </div>
+
+        <div class="content-section" style="background: #f8f9fa;">
+            <h2>TABLE DES MATIÈRES</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid #dee2e6;"><a href="#section1" style="color: #2c5282; text-decoration: none; font-weight: 500;">1. Pourquoi passer un test d'anglais ?</a></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #dee2e6;"><a href="#section2" style="color: #2c5282; text-decoration: none; font-weight: 500;">2. Les principaux tests reconnus au Royaume-Uni</a>
+                    <ul style="margin-left: 25px; margin-top: 10px;">
+                        <li style="padding: 5px 0;"><a href="#ielts" style="color: #666; text-decoration: none;">A. IELTS (International English Language Testing System)</a></li>
+                        <li style="padding: 5px 0;"><a href="#toefl" style="color: #666; text-decoration: none;">B. TOEFL iBT</a></li>
+                        <li style="padding: 5px 0;"><a href="#duolingo" style="color: #666; text-decoration: none;">C. Duolingo English Test</a></li>
+                        <li style="padding: 5px 0;"><a href="#cambridge" style="color: #666; text-decoration: none;">D. Cambridge English Qualifications</a></li>
+                        <li style="padding: 5px 0;"><a href="#pte" style="color: #666; text-decoration: none;">E. PTE Academic</a></li>
+                    </ul>
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #dee2e6;"><a href="#section3" style="color: #2c5282; text-decoration: none; font-weight: 500;">3. Quel test choisir selon votre objectif ?</a></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #dee2e6;"><a href="#centres" style="color: #2c5282; text-decoration: none; font-weight: 500;">4. Adresses de centres agréés en Côte d'Ivoire et Ailleurs</a></li>
+                <li style="padding: 10px 0;"><a href="#cambridge-life" style="color: #2c5282; text-decoration: none; font-weight: 500;">5. Cambridge English - Certification valable à vie</a></li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 id="section1">1. Pourquoi passer un test d'anglais ?</h2>
+            
+            <p>Les universités et les services d'immigration britanniques exigent la preuve d'un niveau d'anglais suffisant pour étudier, travailler ou vivre au Royaume-Uni. Même les étudiants bilingues doivent fournir un certificat reconnu internationalement, obtenu à un examen standardisé.</p>
+
+            <p><strong>Les tests évaluent quatre compétences :</strong></p>
+            <ul>
+                <li><strong>Listening</strong> (Compréhension orale)</li>
+                <li><strong>Reading</strong> (Compréhension écrite)</li>
+                <li><strong>Writing</strong> (Expression écrite)</li>
+                <li><strong>Speaking</strong> (Expression orale)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 id="section2">2. Les principaux tests reconnus au Royaume-Uni</h2>
+
+            <h3 id="ielts">A. IELTS (International English Language Testing System)</h3>
+            
+            <p>Le test le plus reconnu au monde, accepté par :</p>
+            <ul>
+                <li>Toutes les universités britanniques</li>
+                <li>Le service d'immigration UKVI</li>
+                <li>De nombreuses entreprises internationales</li>
+            </ul>
+
+            <h4>Trois versions principales :</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Objectif</th>
+                        <th>Acceptée par</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IELTS Academic</td>
+                        <td>Admission universitaire</td>
+                        <td>Universités, écoles, instituts</td>
+                    </tr>
+                    <tr>
+                        <td>IELTS General Training</td>
+                        <td>Immigration, emploi, formation professionnelle</td>
+                        <td>UKVI, entreprises, etc.</td>
+                    </tr>
+                    <tr style="background: #fff3cd;">
+                        <td><strong>IELTS UKVI Academic</strong></td>
+                        <td><strong>Version spécifique exigée pour le visa étudiant</strong></td>
+                        <td>Home Office (UK Visas & Immigration)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <h4>💡 Particularité :</h4>
+                <p>L'IELTS UKVI est identique à l'IELTS Academic sur le plan du contenu et du niveau, mais il est administré dans un centre agréé UKVI avec une sécurité renforcée.</p>
+                <p><strong>Si vous demandez un visa étudiant, vous devez passer l'IELTS UKVI.</strong></p>
+            </div>
+
+            <h4>Structure du test :</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Durée</th>
+                        <th>Détails</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Listening</td>
+                        <td>30 min</td>
+                        <td>4 enregistrements (monologue, conversations, discussions académiques)</td>
+                    </tr>
+                    <tr>
+                        <td>Reading</td>
+                        <td>60 min</td>
+                        <td>3 textes académiques + questions à choix multiples, résumé, correspondance</td>
+                    </tr>
+                    <tr>
+                        <td>Writing</td>
+                        <td>60 min</td>
+                        <td>2 tâches : description de graphique ou tableau + essai argumenté</td>
+                    </tr>
+                    <tr>
+                        <td>Speaking</td>
+                        <td>11–14 min</td>
+                        <td>Entretien individuel avec un examinateur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>~2h45</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Score requis par les universités :</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type d'université</th>
+                        <th>Score IELTS minimum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oxford / Cambridge / LSE</td>
+                        <td>7.0 – 7.5</td>
+                    </tr>
+                    <tr>
+                        <td>Warwick / UCL / King's / Imperial</td>
+                        <td>6.5 – 7.0</td>
+                    </tr>
+                    <tr>
+                        <td>Universités régionales (Manchester, Exeter, etc.)</td>
+                        <td>6.0 – 6.5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li><strong>Validité :</strong> 2 ans</li>
+                <li><strong>Centres officiels :</strong> British Council Abidjan, CIAL International School, British Councils (certains pays voisins)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h3 id="toefl">B. TOEFL iBT (Test of English as a Foreign Language)</h3>
+            
+            <p>Conçu par ETS, il évalue l'anglais académique américain, mais est accepté par la majorité des universités britanniques (sauf pour le visa UKVI, sauf exceptions).</p>
+
+            <h4>Format :</h4>
+            <ul>
+                <li><strong>Durée :</strong> ~2h</li>
+                <li><strong>Sections :</strong> Reading, Listening, Speaking, Writing</li>
+                <li><strong>Score total :</strong> sur 120 points</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Université</th>
+                        <th>Score minimum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Oxford / Cambridge</td>
+                        <td>110+</td>
+                    </tr>
+                    <tr>
+                        <td>UCL / LSE</td>
+                        <td>100+</td>
+                    </tr>
+                    <tr>
+                        <td>Warwick / Durham</td>
+                        <td>90–100</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Coût :</strong> environ 240–260 USD</p>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Non valide pour le visa étudiant britannique (UKVI).</strong></p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3 id="duolingo">C. Duolingo English Test (DET)</h3>
+            
+            <p>Le plus récent et le plus pratique : se passe en ligne à domicile avec une webcam et reconnaissance faciale. De plus en plus d'universités britanniques l'acceptent depuis la pandémie de Covid-19. Néanmoins ce test n'est pas accepté par un certain nombre d'universités britanniques.</p>
+
+            <h4>Format :</h4>
+            <ul>
+                <li><strong>Durée :</strong> 45–60 min</li>
+                <li><strong>Score :</strong> sur 160</li>
+                <li><strong>Résultats :</strong> sous 48h</li>
+                <li><strong>Coût :</strong> 59 USD</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score Duolingo</th>
+                        <th>Équivalent IELTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>120–125</td>
+                        <td>7.0</td>
+                    </tr>
+                    <tr>
+                        <td>110–115</td>
+                        <td>6.5</td>
+                    </tr>
+                    <tr>
+                        <td>100–105</td>
+                        <td>6.0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <p><strong>💡 Idéal pour les pré-candidatures UCAS ou les programmes non sponsorisés par UKVI.</strong></p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3 id="cambridge">D. Cambridge English Qualifications</h3>
+            <p>(Tests comme C1 Advanced (CAE) ou C2 Proficiency (CPE))</p>
+
+            <ul>
+                <li>Reconnu par de nombreuses universités britanniques</li>
+                <li><strong style="background: #fff3cd; padding: 2px 8px; border-radius: 3px;">Valable à vie (contrairement à l'IELTS !)</strong></li>
+                <li>Convient aux étudiants visant des programmes d'élite</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Test</th>
+                        <th>Équivalent IELTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>C2</td>
+                        <td>CPE</td>
+                        <td>8.5 – 9.0</td>
+                    </tr>
+                    <tr>
+                        <td>C1</td>
+                        <td>CAE</td>
+                        <td>7.0 – 8.0</td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>FCE</td>
+                        <td>5.5 – 6.5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Coût :</strong> environ 200–250 GBP</p>
+            <p>Excellent choix si vous souhaitez une certification permanente.</p>
+
+            <h4>Pourquoi choisir Cambridge English ?</h4>
+            <p>Le Cambridge English Qualification constitue une alternative stratégique de premier plan pour les étudiants visant le Royaume-Uni ou une carrière internationale. Contrairement à l'IELTS, dont la validité est limitée à deux ans, les certificats Cambridge sont <strong>valables à vie</strong>, ce qui en fait un investissement durable et hautement reconnu dans le monde académique et professionnel.</p>
+
+            <p>Les examens les plus adaptés pour les lycéens et étudiants sont le <strong>B2 First</strong> (anciennement "First Certificate in English FCE") et le <strong>C1 Advanced</strong> (anciennement "Certificate in Advanced English CAE").</p>
+
+            <p>Le <strong>B2 First</strong> atteste d'un niveau intermédiaire supérieur d'anglais (équivalent IELTS 5.5 – 6.5) et prouve que le candidat peut suivre un cursus universitaire de premier cycle.</p>
+
+            <p>Le <strong>C1 Advanced</strong> correspond à un niveau avancé (équivalent IELTS 6.5 – 7.5) et démontre la capacité à évoluer dans un environnement académique ou professionnel anglophone exigeant.</p>
+
+            <p>Ces examens évaluent les quatre compétences linguistiques (compréhension écrite et orale, expression écrite et orale), ainsi que la grammaire et le vocabulaire dans un contexte académique et professionnel concret. Leur obtention constitue un véritable gage de crédibilité internationale, reconnu par plus de 25 000 universités, entreprises et institutions publiques dans le monde.</p>
+        </div>
+
+        <div class="content-section">
+            <h3 id="pte">E. PTE Academic (Pearson Test of English)</h3>
+            
+            <ul>
+                <li>Évaluation informatique très précise</li>
+                <li>Reconnue par de nombreuses universités britanniques</li>
+                <li>Résultats en 48h</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score PTE</th>
+                        <th>Équivalent IELTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>76–84</td>
+                        <td>7.5</td>
+                    </tr>
+                    <tr>
+                        <td>65–75</td>
+                        <td>6.5–7.0</td>
+                    </tr>
+                    <tr>
+                        <td>59–64</td>
+                        <td>6.0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Coût :</strong> environ 230–250 USD</p>
+        </div>
+
+        <div class="content-section">
+            <h2 id="section3">3. Mais en réalité quel test choisir selon votre objectif ?</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Objectif</th>
+                        <th>Test recommandé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #fff3cd;">
+                        <td><strong>Visa étudiant</strong></td>
+                        <td><strong>IELTS UKVI Academic</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Études en ligne / pré-candidatures UCAS</td>
+                        <td>Duolingo English Test</td>
+                    </tr>
+                    <tr style="background: #fff3cd;">
+                        <td><strong>Certification valable à vie</strong></td>
+                        <td><strong>Cambridge English (CAE/CPE)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <h3>⚠️ Pourquoi privilégier le test IELTS UKVI comme premier choix</h3>
+                
+                <p>Le test <strong>IELTS for UKVI (version Academic)</strong> est obligatoire pour toute demande de visa étudiant ou d'immigration au Royaume-Uni dès lors que le candidat n'est pas citoyen britannique. Il s'agit du seul test reconnu par le Home Office (UK Visas & Immigration), garantissant la conformité de votre dossier de visa. Même si certaines universités acceptent d'autres certifications (comme le TOEFL ou le Cambridge), le visa ne sera délivré qu'avec un test UKVI valide. C'est donc le premier test que nous recommandons à tous les candidats souhaitant étudier ou s'installer au Royaume-Uni.</p>
+
+                <p><strong>Bonne nouvelle :</strong> Abidjan dispose désormais d'un centre agréé UKVI, le <strong>British Council – Graduate School of Management</strong>, situé à Cocody, qui propose officiellement le test IELTS for UKVI (Academic et General Training). Le coût de l'inscription est d'environ <strong>310 € (203 350 FCFA)</strong>.</p>
+
+                <p>Lorsque les sessions UKVI à Abidjan sont complètes ou temporairement indisponibles, les candidats peuvent se tourner vers des centres agréés dans les pays voisins, notamment au Ghana (Accra), au Togo (Lomé) ou au Sénégal (Dakar), ou encore vers des centres UKVI en France, où les tarifs sont similaires (entre 290 € et 330 €) selon le lieu et la période. Il est toutefois conseillé de réserver plusieurs semaines à l'avance pour garantir une place.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 id="centres">Adresses de centres agréés en Côte d'Ivoire et Ailleurs pour l'IELTS</h2>
+
+            <div class="info-box">
+                <h3>Centre officiel IELTS UKVI à Abidjan</h3>
+                <p><strong>Nom :</strong> British Council – Graduate School of Management</p>
+                <p><strong>Adresse :</strong> Cocody, Riviera Palmeraie, Rue I 222, près de la Pharmacie Marie-Esther, 26 BP 755 Abidjan 26, Côte d'Ivoire</p>
+                <p><strong>Tarif :</strong> environ 310 € soit 203 350 FCFA</p>
+                <p><strong>Lien officiel :</strong> <a href="https://ielts.org/test-centres/british-council-graduate-school-of-management" target="_blank">ielts.org/test-centres/british-council-graduate-school-of-management</a></p>
+            </div>
+
+            <p>Lorsque les sessions à Abidjan sont complètes ou momentanément suspendues, les candidats peuvent se tourner vers des centres agréés dans les pays voisins :</p>
+
+            <ul>
+                <li>🇬🇭 <strong>Ghana (Accra)</strong> – British Council Accra</li>
+                <li>🇸🇳 <strong>Sénégal (Dakar)</strong> – British Council Dakar (recherche via le site IELTS.org)</li>
+                <li>🇹🇬 <strong>Togo (Lomé)</strong> – British Council Lomé (recherche via le site IELTS.org)</li>
+                <li>🇫🇷 <strong>France (Paris, Lyon, Marseille, Lille, Bordeaux)</strong> – British Council France – IELTS Dates & Fees</li>
+            </ul>
+
+            <h4>Procédure pour rechercher un autre centre IELTS UKVI :</h4>
+            <ol>
+                <li>Rendez-vous sur le site officiel : <a href="https://www.ielts.org" target="_blank">www.ielts.org</a></li>
+                <li>Cliquez sur "Find a test location"</li>
+                <li>Sélectionnez le pays et la ville de votre choix</li>
+                <li>Filtrez les résultats en cochant la case "IELTS for UKVI" (pour visa)</li>
+                <li>Consultez les dates disponibles, le coût et les modalités d'inscription directement en ligne</li>
+            </ol>
+
+            <p><strong>Il est recommandé de réserver votre session au moins 4 à 6 semaines à l'avance</strong>, car les places sont limitées et les sessions UKVI se remplissent rapidement, notamment avant les périodes de rentrée universitaire (juin à septembre).</p>
+        </div>
+
+        <div class="content-section" id="cambridge-life">
+            <h2>Cambridge English en Côte d'Ivoire</h2>
+
+            <p>En Côte d'Ivoire, les examens Cambridge English peuvent être passés localement à Abidjan, notamment au :</p>
+
+            <div class="info-box">
+                <h3>Centre officiel Cambridge English – Lycée International Jean Mermoz</h3>
+                <p><strong>📍 Adresse :</strong> Avenue Mermoz, Cocody, 08 BP 3545, Abidjan, Côte d'Ivoire</p>
+                <p><strong>Propose :</strong> les certifications B2 First (FCE) et C1 Advanced (CAE)</p>
+                <p><strong>Sessions :</strong> organisées plusieurs fois par an, selon le nombre de candidats inscrits</p>
+                <p><strong>🌐 Plus d'informations :</strong> <a href="http://www.lijmermoz.org" target="_blank">www.lijmermoz.org</a></p>
+                <p><strong>Contact Responsable Bureau Cambridge - LIJM :</strong> sandrine.laubion@mlfmonde.org</p>
+            </div>
+
+            <p>Pour les étudiants résidant dans d'autres villes ou à l'étranger, il est possible de localiser un centre d'examen agréé Cambridge en utilisant l'outil officiel "Find an Exam Centre" :</p>
+            <p>→ <a href="https://www.cambridgeenglish.org/find-a-centre/find-an-exam-centre" target="_blank">https://www.cambridgeenglish.org/find-a-centre/find-an-exam-centre</a></p>
+
+            <p>Les frais d'inscription varient généralement entre 200 et 300 €, selon le niveau et le centre. Les candidats doivent s'inscrire plusieurs semaines avant la session souhaitée afin de garantir leur place.</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const user = JSON.parse(window.localStorage.getItem('currentUser') || 'null');
+            if (!user) {
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>
