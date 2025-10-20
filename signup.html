@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Profiles - Private Access</title>
+    <title>MyMentor - Sign Up</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -36,7 +36,7 @@
         }
 
         .logo h1 {
-            color: #667eea;
+            color: #1a365d;
             font-size: 28px;
             margin-bottom: 10px;
         }
@@ -69,24 +69,25 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #1a365d;
         }
 
         .btn {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1a365d;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s;
         }
 
         .btn:hover {
             transform: translateY(-2px);
+            background: #2d4a7c;
         }
 
         .error {
@@ -121,7 +122,7 @@
         }
 
         .link-text a {
-            color: #667eea;
+            color: #1a365d;
             text-decoration: none;
             font-weight: 600;
         }
@@ -129,13 +130,28 @@
         .link-text a:hover {
             text-decoration: underline;
         }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #1a365d;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container" id="authContainer">
         <div class="logo">
-            <h1>🎓 University Profiles</h1>
-            <p>Exclusive access for invited members</p>
+            <h1>MyMentor</h1>
+            <p>Sécuriser son avenir dès la 1ère année</p>
         </div>
 
         <div class="error" id="errorMsg"></div>
@@ -143,45 +159,54 @@
 
         <div id="inviteStep">
             <div class="form-group">
-                <label>Invitation Code</label>
-                <input type="text" id="inviteCode" placeholder="Enter your invitation code">
+                <label>Code d'invitation</label>
+                <input type="text" id="inviteCode" placeholder="Entrez votre code d'invitation">
             </div>
-            <button class="btn" onclick="validateInvite()">Continue</button>
+            <button class="btn" onclick="validateInvite()">Continuer</button>
             <div class="link-text">
-                <span>Already have an account? </span>
-                <a href="#" onclick="showLoginStep()">Login here</a>
+                <span>Vous avez déjà un compte ? </span>
+                <a href="#" onclick="showLoginStep()">Connectez-vous ici</a>
+            </div>
+            <div class="back-link">
+                <a href="index.html">← Retour à l'accueil</a>
             </div>
         </div>
 
         <div id="registerStep" class="hidden">
             <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter your full name">
+                <label>Nom complet</label>
+                <input type="text" id="fullName" placeholder="Entrez votre nom complet">
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
+                <input type="email" id="email" placeholder="Entrez votre email">
             </div>
             <div class="form-group">
-                <label>Create Password</label>
-                <input type="password" id="password" placeholder="Create a password">
+                <label>Créer un mot de passe</label>
+                <input type="password" id="password" placeholder="Créez un mot de passe">
             </div>
-            <button class="btn" onclick="register()">Create Account</button>
+            <button class="btn" onclick="register()">Créer mon compte</button>
+            <div class="back-link">
+                <a href="#" onclick="showInviteStep()">← Retour</a>
+            </div>
         </div>
 
         <div id="loginStep" class="hidden">
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" id="loginEmail" placeholder="Enter your email">
+                <input type="email" id="loginEmail" placeholder="Entrez votre email">
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="Enter your password">
+                <label>Mot de passe</label>
+                <input type="password" id="loginPassword" placeholder="Entrez votre mot de passe">
             </div>
-            <button class="btn" onclick="login()">Login</button>
+            <button class="btn" onclick="login()">Se connecter</button>
             <div class="link-text">
-                <span>Have an invitation code? </span>
-                <a href="#" onclick="showInviteStep()">Enter it here</a>
+                <span>Vous avez un code d'invitation ? </span>
+                <a href="#" onclick="showInviteStep()">Entrez-le ici</a>
+            </div>
+            <div class="back-link">
+                <a href="index.html">← Retour à l'accueil</a>
             </div>
         </div>
     </div>
@@ -193,6 +218,14 @@
             const savedUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
             if (savedUser) {
                 window.location.href = 'landing.html';
+            }
+            
+            // Check URL hash to show correct form
+            const hash = window.location.hash;
+            if (hash === '#login') {
+                showLoginStep();
+            } else if (hash === '#signup') {
+                // Keep showing invite step (default)
             }
         };
 
@@ -214,7 +247,7 @@
             const code = document.getElementById('inviteCode').value.trim().toUpperCase();
             
             if (!code) {
-                showError('Please enter an invitation code');
+                showError('Veuillez entrer un code d\'invitation');
                 return;
             }
 
@@ -222,9 +255,9 @@
                 localStorage.setItem('validInviteCode', code);
                 document.getElementById('inviteStep').classList.add('hidden');
                 document.getElementById('registerStep').classList.remove('hidden');
-                showSuccess('Valid code! Please create your account.');
+                showSuccess('Code valide ! Veuillez créer votre compte.');
             } else {
-                showError('Invalid invitation code. Please check and try again.');
+                showError('Code d\'invitation invalide. Veuillez vérifier et réessayer.');
             }
         }
 
@@ -235,19 +268,19 @@
             const inviteCode = localStorage.getItem('validInviteCode');
 
             if (!name || !email || !password) {
-                showError('Please fill in all fields');
+                showError('Veuillez remplir tous les champs');
                 return;
             }
 
             if (password.length < 6) {
-                showError('Password must be at least 6 characters');
+                showError('Le mot de passe doit contenir au moins 6 caractères');
                 return;
             }
 
             // Check if user already exists
             const existingUser = localStorage.getItem(`user_${email}`);
             if (existingUser) {
-                showError('An account with this email already exists');
+                showError('Un compte avec cet email existe déjà');
                 return;
             }
 
@@ -266,7 +299,7 @@
             localStorage.setItem('currentUser', JSON.stringify(user));
             localStorage.removeItem('validInviteCode');
             
-            showSuccess('Account created successfully!');
+            showSuccess('Compte créé avec succès !');
             setTimeout(() => window.location.href = 'landing.html', 1000);
         }
 
@@ -274,12 +307,14 @@
             document.getElementById('loginStep').classList.add('hidden');
             document.getElementById('registerStep').classList.add('hidden');
             document.getElementById('inviteStep').classList.remove('hidden');
+            window.location.hash = 'signup';
         }
 
         function showLoginStep() {
             document.getElementById('inviteStep').classList.add('hidden');
             document.getElementById('registerStep').classList.add('hidden');
             document.getElementById('loginStep').classList.remove('hidden');
+            window.location.hash = 'login';
         }
 
         function login() {
@@ -287,7 +322,7 @@
             const password = document.getElementById('loginPassword').value;
 
             if (!email || !password) {
-                showError('Please enter email and password');
+                showError('Veuillez entrer votre email et mot de passe');
                 return;
             }
 
@@ -296,20 +331,20 @@
             const savedUser = localStorage.getItem(userKey);
 
             if (!savedUser) {
-                showError('No account found with this email');
+                showError('Aucun compte trouvé avec cet email');
                 return;
             }
 
             const user = JSON.parse(savedUser);
 
             if (user.password !== password) {
-                showError('Incorrect password');
+                showError('Mot de passe incorrect');
                 return;
             }
 
             // Login successful
             localStorage.setItem('currentUser', JSON.stringify(user));
-            showSuccess('Login successful!');
+            showSuccess('Connexion réussie !');
             setTimeout(() => window.location.href = 'landing.html', 1000);
         }
     </script>
